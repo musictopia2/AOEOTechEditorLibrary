@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <Version>7.0.4</Version>
+    <Version>7.0.5</Version>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AOEOBasicDataLibrary" Version="7.0.3" />
+    <PackageReference Include="AOEOBasicDataLibrary" Version="7.0.5" />
     <PackageReference Include="BasicBlazorLibrary" Version="7.0.25" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.5" />
   </ItemGroup>

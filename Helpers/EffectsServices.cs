@@ -1,6 +1,22 @@
 ﻿namespace AOEOTechEditorLibrary.Helpers;
 public static class EffectsServices
 {
+    public static BasicList<BasicEffectModel> GetRangeTechOnShips(string value)
+    {
+        BasicList<BasicEffectModel> output = new();
+        BasicEffectModel effect = new MaximumRange1Model()
+        {
+            ProtoUnit = uu1.Ship,
+            Value = value
+        };
+        output.Add(effect);
+        effect = new MaximumRange2Model()
+        {
+            Value = value
+        };
+        output.Add(effect);
+        return output;
+    }
     public static BasicList<BasicEffectModel> GetAllConvertTechs(string value)
     {
         return GetAllConvertTechs(uu1.Priest, value);
@@ -38,7 +54,7 @@ public static class EffectsServices
     }
     public static BasicList<BasicEffectModel> GetConvertTechs(EnumConvertCategory category, string value)
     {
-        return GetConvertTechs(category, uu1.Priest);
+        return GetConvertTechs(category, uu1.Priest, value);
     }
     public static BasicList<BasicEffectModel> GetStartingResources(string value)
     {
