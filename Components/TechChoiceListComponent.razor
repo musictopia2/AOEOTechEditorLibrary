@@ -1,0 +1,12 @@
+﻿@typeparam T
+<WrapLayout ColumnWidth="300px" T=T RenderList="TechList" Context="item">
+
+    <div class="@CssName(item) borders" @onclick="() => TechClicked(item)">
+        <div>
+            @item.Title
+        </div>
+        <div>
+            @item.Description
+        </div>
+    </div>
+</WrapLayout>

@@ -1,0 +1,19 @@
+﻿@typeparam T
+@if (Techs.Count == 0)
+{
+    return;
+}
+<TechGridContainer>
+    <FirstColumnContent>
+        <SimpleStandardLevelEditorListComponent Techs="GetFilteredList(EnumTechLevel.Easy)" />
+    </FirstColumnContent>
+    <SecondColumnContent>
+        <SimpleStandardLevelEditorListComponent Techs="GetFilteredList(EnumTechLevel.Average)" />
+    </SecondColumnContent>
+    <ThirdColumnContent>
+        <SimpleStandardLevelEditorListComponent Techs="GetFilteredList(EnumTechLevel.Hard)" />
+    </ThirdColumnContent>
+    <FourthColumnContent>
+        <SimpleStandardLevelEditorListComponent Techs="GetFilteredList(null)" />
+    </FourthColumnContent>
+</TechGridContainer>
