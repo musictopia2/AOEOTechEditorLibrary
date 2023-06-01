@@ -1,6 +1,45 @@
 ﻿namespace AOEOTechEditorLibrary.Helpers;
 public static class EffectsServices
 {
+    public static BasicList<BasicEffectModel> GetAllConvertTechs(string value)
+    {
+        return GetAllConvertTechs(uu1.Priest, value);
+    }
+    public static BasicList<BasicEffectModel> GetAllConvertTechs(string protoUnit, string value)
+    {
+        BasicList<EnumConvertCategory> categories = new()
+        {
+            EnumConvertCategory.StandardConvertable,
+            EnumConvertCategory.ConvertableCavalry,
+            EnumConvertCategory.ConvertableInfantry,
+            EnumConvertCategory.ConvertableBuilding,
+            EnumConvertCategory.ConvertableBuilding
+        };
+        BasicList<BasicEffectModel> output = new();
+        foreach (var item in categories)
+        {
+            BasicList<BasicEffectModel> list = GetConvertTechs(item, protoUnit, value);
+            output.AddRange(list);
+        }
+        return output;
+    }
+    public static BasicList<BasicEffectModel> GetConvertTechs(EnumConvertCategory category, string protoUnit, string value)
+    {
+        BasicList<BasicEffectModel> output = new();
+        BasicEffectModel effect = new Convert1Model(category);
+        effect.ProtoUnit = protoUnit;
+        effect.Value = value;
+        output.Add(effect);
+        effect = new Convert2Model(category);
+        effect.ProtoUnit = protoUnit;
+        effect.Value = value;
+        output.Add(effect);
+        return output;
+    }
+    public static BasicList<BasicEffectModel> GetConvertTechs(EnumConvertCategory category, string value)
+    {
+        return GetConvertTechs(category, uu1.Priest);
+    }
     public static BasicList<BasicEffectModel> GetStartingResources(string value)
     {
         BasicList<BasicEffectModel> output = new()

@@ -8,3 +8,4 @@ global using CommonBasicLibraries.BasicDataSettingsAndProcesses;
 global using AOEOTechEditorLibrary.Models;
 global using Microsoft.AspNetCore.Components;
 global using AOEOBasicDataLibrary.Models;
+global using uu1 = AOEOBasicDataLibrary.Helpers.UnitGroupConstants;
