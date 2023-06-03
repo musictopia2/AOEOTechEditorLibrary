@@ -75,6 +75,24 @@ public static class EffectsServices
         };
         return output;
     }
+    public static BasicList<BasicEffectModel> GetHousesIncreasePop(string house, string value, int popIncreaseBy = 5)
+    {
+        BasicList<BasicEffectModel> output = new();
+        BasicEffectModel effect = new BuildLimitModel()
+        {
+            ProtoUnit = house,
+            Value = value
+        };
+        output.Add(effect);
+        int starts = int.Parse(value); //hopefully okay (?)
+        int popExtra = starts * popIncreaseBy;
+        effect = new PopulationExtraModel()
+        {
+            Value = popExtra.ToString()
+        };
+        output.Add(effect);
+        return output;
+    }
     public static BasicList<BasicEffectModel> GetBasicResources(string value)
     {
         BasicList<BasicEffectModel> output = new()
