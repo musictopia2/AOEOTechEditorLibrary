@@ -84,7 +84,8 @@ public static class EffectsServices
             Value = value
         };
         output.Add(effect);
-        int starts = int.Parse(value); //hopefully okay (?)
+        value = value.Replace(".0000", "");
+        int starts = int.Parse(value);
         int popExtra = starts * popIncreaseBy;
         effect = new PopulationExtraModel()
         {
