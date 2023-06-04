@@ -75,6 +75,29 @@ public static class EffectsServices
         };
         return output;
     }
+    public static BasicList<BasicEffectModel> GetBonusDamageAgainstKeyMilitaryUnits(string protoUnit, string value)
+    {
+        BasicList<BasicEffectModel> output = new();
+        BasicList<string> against = new()
+        {
+            uu1.Archer,
+            uu1.Infantry,
+            uu1.Cavalry,
+            uu1.Siege,
+            uu1.Priest,
+            uu1.Ship
+        };
+        foreach (var unit in against)
+        {
+            BasicEffectModel effect = new BonusDamageAgainstUnitModel(unit)
+            {
+                ProtoUnit = protoUnit,
+                Value = value
+            };
+            output.Add(effect);
+        }
+        return output;
+    }
     public static BasicList<BasicEffectModel> GetHousesIncreasePop(string house, string value, int popIncreaseBy = 5)
     {
         BasicList<BasicEffectModel> output = new();
