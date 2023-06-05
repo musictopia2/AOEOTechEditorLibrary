@@ -1,5 +1,5 @@
 ﻿namespace AOEOTechEditorLibrary.Models;
-public class TectActiveEffectModel : BasicEffectModel
+public class TechActiveEffectModel : BasicEffectModel
 {
     protected override string Action => "";
     protected override string SubType => "";
