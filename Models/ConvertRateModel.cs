@@ -1,9 +1,9 @@
 ﻿namespace AOEOTechEditorLibrary.Models;
-public abstract class ConvertModel : UnitModel
+public abstract class ConvertRateModel : UnitModel
 {
     private readonly EnumConvertCategory _convert;
 
-    public ConvertModel(EnumConvertCategory convert)
+    public ConvertRateModel(EnumConvertCategory convert)
     {
         _convert = convert;
     }

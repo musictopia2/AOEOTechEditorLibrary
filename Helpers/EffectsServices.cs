@@ -42,11 +42,11 @@ public static class EffectsServices
     public static BasicList<BasicEffectModel> GetConvertTechs(EnumConvertCategory category, string protoUnit, string value)
     {
         BasicList<BasicEffectModel> output = new();
-        BasicEffectModel effect = new Convert1Model(category);
+        BasicEffectModel effect = new ConvertRate1Model(category);
         effect.ProtoUnit = protoUnit;
         effect.Value = value;
         output.Add(effect);
-        effect = new Convert2Model(category);
+        effect = new ConvertRate2Model(category);
         effect.ProtoUnit = protoUnit;
         effect.Value = value;
         output.Add(effect);
