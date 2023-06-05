@@ -17,11 +17,11 @@ public static class EffectsServices
         output.Add(effect);
         return output;
     }
-    public static BasicList<BasicEffectModel> GetAllConvertTechs(string value)
+    public static BasicList<BasicEffectModel> GetAllConvertRateTechs(string value)
     {
-        return GetAllConvertTechs(uu1.Priest, value);
+        return GetAllConvertRateTechs(uu1.Priest, value);
     }
-    public static BasicList<BasicEffectModel> GetAllConvertTechs(string protoUnit, string value)
+    public static BasicList<BasicEffectModel> GetAllConvertRateTechs(string protoUnit, string value)
     {
         BasicList<EnumConvertCategory> categories = new()
         {
@@ -34,12 +34,12 @@ public static class EffectsServices
         BasicList<BasicEffectModel> output = new();
         foreach (var item in categories)
         {
-            BasicList<BasicEffectModel> list = GetConvertTechs(item, protoUnit, value);
+            BasicList<BasicEffectModel> list = GetConvertRateTechs(item, protoUnit, value);
             output.AddRange(list);
         }
         return output;
     }
-    public static BasicList<BasicEffectModel> GetConvertTechs(EnumConvertCategory category, string protoUnit, string value)
+    public static BasicList<BasicEffectModel> GetConvertRateTechs(EnumConvertCategory category, string protoUnit, string value)
     {
         BasicList<BasicEffectModel> output = new();
         BasicEffectModel effect = new ConvertRate1Model(category);
@@ -52,9 +52,30 @@ public static class EffectsServices
         output.Add(effect);
         return output;
     }
-    public static BasicList<BasicEffectModel> GetConvertTechs(EnumConvertCategory category, string value)
+    public static BasicList<BasicEffectModel> GetConvertRateTechs(EnumConvertCategory category, string value)
     {
-        return GetConvertTechs(category, uu1.Priest, value);
+        return GetConvertRateTechs(category, uu1.Priest, value);
+    }
+    public static BasicList<BasicEffectModel> GetConvertRangeTechs(string value)
+    {
+        return GetConvertRangeTechs(uu1.Priest, value);
+    }
+    public static BasicList<BasicEffectModel> GetConvertRangeTechs(string protoUnit, string value)
+    {
+        BasicList<BasicEffectModel> output = new();
+        BasicEffectModel effect = new ConvertRange1Model()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+        output.Add(effect);
+        effect = new ConvertRange2Model()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+        output.Add(effect);
+        return output;
     }
     public static BasicList<BasicEffectModel> GetStartingResources(string value)
     {
