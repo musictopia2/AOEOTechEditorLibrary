@@ -87,7 +87,7 @@ public abstract class BasicEffectModel
                     <Target type="{TargetType}">{ProtoUnit}</Target>
                     """;
             }
-            else if (Content != "")
+            else if (Content == "")
             {
                 source = $"""
                     <Target type="{TargetType}" />
