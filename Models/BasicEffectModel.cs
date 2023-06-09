@@ -75,7 +75,7 @@ public abstract class BasicEffectModel
         {
             output.SetAttributeValue("status", Status);
         }
-        if (Content != "")
+        if (Content != "" && TargetType == "")
         {
             output.Value = Content;
         }
@@ -87,10 +87,16 @@ public abstract class BasicEffectModel
                     <Target type="{TargetType}">{ProtoUnit}</Target>
                     """;
             }
-            else
+            else if (Content != "")
             {
                 source = $"""
                     <Target type="{TargetType}" />
+                    """;
+            }
+            else
+            {
+                source = $"""
+                    <Target type="{TargetType}">{Content}</Target>
                     """;
             }
             XElement target = XElement.Parse(source);
