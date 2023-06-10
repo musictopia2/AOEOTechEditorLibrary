@@ -50,6 +50,20 @@ public static class TechTreeServices
         techs.Add(ourxml);
         return techs;
     }
+    public static BasicList<XElement> GetEffects(this XElement tech)
+    {
+        //reserve the possibility of no techvaluepairs.
+        BasicList<XElement> output = tech.Element("Effects")!.Elements().ToBasicList();
+        BasicList<XElement> temp = output.ToBasicList();
+        foreach (var item in temp)
+        {
+            if (CanUseTech(item) == false)
+            {
+                output.RemoveSpecificItem(item); //i think
+            }
+        } //this case just gets the efects of the tech element and takes into account no deer for the advisor still.
+        return output;
+    }
     public static BasicList<XElement> GetEditedElements(this XElement tech, BasicList<TechValuePairModel> pairs)
     {
         BasicList<XElement> output = tech.Element("Effects")!.Elements().ToBasicList();
