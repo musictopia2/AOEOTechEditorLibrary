@@ -17,6 +17,30 @@ public static class EffectsServices
         output.Add(effect);
         return output;
     }
+    public static BasicList<BasicEffectModel> GetAllArmorTechs(string protoUnit, string value, bool includeSiege)
+    {
+        BasicList<EnumDamageCategory> categories = new()
+        {
+            EnumDamageCategory.Cavalry,
+            EnumDamageCategory.Hand,
+            EnumDamageCategory.Ranged
+        };
+        if (includeSiege)
+        {
+            categories.Add(EnumDamageCategory.Siege);
+        }
+        BasicList<BasicEffectModel> output = new();
+        foreach (var item in categories)
+        {
+            BasicEffectModel effect = new ArmorModel(item)
+            {
+                ProtoUnit = protoUnit,
+                Value = value
+            };
+            output.Add(effect);
+        }
+        return output;
+    }
     public static BasicList<BasicEffectModel> GetAllConvertRateTechs(string value)
     {
         return GetAllConvertRateTechs(uu1.Priest, value);
