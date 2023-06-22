@@ -274,43 +274,46 @@ public static class EffectsServices
         foreach (BasicEffectModel effect in effects)
         {
             XElement xml = effect.GetElement();
-            output.Add(xml);
-        }
-        return output;
-    }
-    public static BasicList<TechValuePairModel> GetPairs(XElement tech)
-    {
-        BasicList<TechValuePairModel> output = new();
-        var list = tech.Elements("Effects").Single().Elements().ToBasicList();
-        foreach (var item in list)
-        {
-            if (IsProperElement(item))
+            if (TechHelpers.EffectAllowed is null || TechHelpers.EffectAllowed.Invoke(xml))
             {
-                string value = item.Attribute("amount")!.Value;
-                if (output.Any(x => x.OriginalValue == value) == false)
-                {
-                    TechValuePairModel pair = new()
-                    {
-                        OriginalValue = value,
-                        ModifiedValue = value
-                    };
-                    output.Add(pair);
-                }
+                output.Add(xml);
             }
         }
         return output;
     }
-    internal static bool IsProperElement(XElement source)
-    {
-        var item = source.Attribute("subtype");
-        if (item is null)
-        {
-            return false;
-        }
-        if (source.Attribute("subtype")!.Value == "ActionEnable")
-        {
-            return false;
-        }
-        return true;
-    }
+    //public static BasicList<TechValuePairModel> GetPairs(XElement tech)
+    //{
+    //    BasicList<TechValuePairModel> output = new();
+    //    var list = tech.Elements("Effects").Single().Elements().ToBasicList();
+    //    foreach (var item in list)
+    //    {
+    //        if (IsProperElement(item))
+    //        {
+    //            string value = item.Attribute("amount")!.Value;
+    //            if (output.Any(x => x.OriginalValue == value) == false)
+    //            {
+    //                TechValuePairModel pair = new()
+    //                {
+    //                    OriginalValue = value,
+    //                    ModifiedValue = value
+    //                };
+    //                output.Add(pair);
+    //            }
+    //        }
+    //    }
+    //    return output;
+    //}
+    //internal static bool IsProperElement(XElement source)
+    //{
+    //    var item = source.Attribute("subtype");
+    //    if (item is null)
+    //    {
+    //        return false;
+    //    }
+    //    if (source.Attribute("subtype")!.Value == "ActionEnable")
+    //    {
+    //        return false;
+    //    }
+    //    return true;
+    //}
 }

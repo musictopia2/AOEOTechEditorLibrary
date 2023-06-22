@@ -7,3 +7,4 @@ global using Microsoft.AspNetCore.Components;
 global using AOEOBasicDataLibrary.Models;
 global using uu1 = AOEOBasicDataLibrary.Helpers.UnitGroupConstants;
 global using AOEOBasicDataLibrary.Civs.Constants;
+global using AOEOBasicDataLibrary.Helpers;
