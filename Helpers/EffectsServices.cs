@@ -1,17 +1,18 @@
 ﻿namespace AOEOTechEditorLibrary.Helpers;
 public static class EffectsServices
 {
-    public static BasicList<BasicEffectModel> GetRangeTechOnShips(string value)
+    public static BasicList<BasicEffectModel> GetRangeTechOnRomanShips(string value)
     {
         BasicList<BasicEffectModel> output = new();
         BasicEffectModel effect = new MaximumRange1Model()
         {
-            ProtoUnit = uu1.Ship,
+            ProtoUnit = RomanUnits.Enneris,
             Value = value
         };
         output.Add(effect);
         effect = new MaximumRange2Model()
         {
+            ProtoUnit = RomanUnits.Enneris,
             Value = value
         };
         output.Add(effect);
