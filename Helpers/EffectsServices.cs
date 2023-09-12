@@ -246,6 +246,28 @@ public static class EffectsServices
         }
         return output;
     }
+    public static BasicList<BasicEffectModel> GetVillagerYieldEffects(string value)
+    {
+        BasicList<BasicEffectModel> output = new();
+        BasicList<EnumGatherCategory> categories = new()
+        {
+            EnumGatherCategory.AbstractFish,
+            EnumGatherCategory.AbstractFruit,
+            EnumGatherCategory.Herdable,
+            EnumGatherCategory.Huntable,
+            EnumGatherCategory.Tree,
+            EnumGatherCategory.Gold,
+            EnumGatherCategory.Stone
+        };
+        foreach (EnumGatherCategory category in categories)
+        {
+            VillagerYieldModel gather = new(category);
+            gather.ProtoUnit = "UnitTypeVillager1";
+            gather.Value = value;
+            output.Add(gather);
+        }
+        return output;
+    }
     public static BasicList<BasicEffectModel> GetVillagerGatherEffects(string value)
     {
         BasicList<BasicEffectModel> output = new();
