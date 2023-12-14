@@ -64,37 +64,6 @@ public static class TechTreeServices
         } //this case just gets the efects of the tech element and takes into account no deer for the advisor still.
         return output;
     }
-    //public static BasicList<XElement> GetEditedElements(this XElement tech, BasicList<TechValuePairModel> pairs)
-    //{
-    //    BasicList<XElement> output = tech.Element("Effects")!.Elements().ToBasicList();
-    //    BasicList<XElement> temp = output.ToBasicList();
-    //    foreach (var item in temp)
-    //    {
-    //        if (CanUseTech(item) == false)
-    //        {
-    //            output.RemoveSpecificItem(item); //i think
-    //        }
-    //    }
-    //    foreach (var item in output)
-    //    {
-    //        if (item.IsProperEffectElement())
-    //        {
-    //            var fins = item.Attribute("amount");
-    //            if (fins is not null)
-    //            {
-    //                string value = fins.Value;
-    //                foreach (var pair in pairs)
-    //                {
-    //                    if (pair.OriginalValue == value)
-    //                    {
-    //                        fins.Value = pair.ModifiedValue;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //    return output;
-    //}
     private static bool CanUseTech(XElement effect)
     {
         var item = effect.Attribute("action");
@@ -108,17 +77,4 @@ public static class TechTreeServices
         }
         return true;
     }
-    //internal static bool IsProperEffectElement(this XElement source)
-    //{
-    //    var item = source.Attribute("subtype");
-    //    if (item is null)
-    //    {
-    //        return false;
-    //    }
-    //    if (source.Attribute("subtype")!.Value == "ActionEnable")
-    //    {
-    //        return false;
-    //    }
-    //    return true;
-    //}
 }

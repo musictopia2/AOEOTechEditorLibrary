@@ -4,7 +4,7 @@ global using CommonBasicLibraries.AdvancedGeneralFunctionsAndProcesses.BasicExte
 global using CommonBasicLibraries.BasicDataSettingsAndProcesses;
 global using AOEOTechEditorLibrary.Models;
 global using Microsoft.AspNetCore.Components;
-global using AOEOBasicDataLibrary.Models;
+global using AOEOCivilizationLibrary.Constants;
 global using uu1 = AOEOBasicDataLibrary.Helpers.UnitGroupConstants;
-global using AOEOBasicDataLibrary.Civs.Constants;
 global using AOEOBasicDataLibrary.Helpers;
+global using AOEOTechEditorLibrary.Interfaces;
