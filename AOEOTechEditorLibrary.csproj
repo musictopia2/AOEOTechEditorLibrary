@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <Version>8.0.1</Version>
+    <Version>8.0.3</Version>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AOEOBasicDataLibrary" Version="8.0.4" />
-    <PackageReference Include="AOEOCivilizationLibrary" Version="8.0.2" />
-    <PackageReference Include="BasicBlazorLibrary" Version="8.0.1" />
+    <PackageReference Include="AOEOBasicDataLibrary" Version="8.0.5" />
+    <PackageReference Include="AOEOCivilizationLibrary" Version="8.0.3" />
+    <PackageReference Include="BasicBlazorLibrary" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0" />
   </ItemGroup>
 
