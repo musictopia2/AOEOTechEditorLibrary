@@ -14,6 +14,7 @@ public class CustomTacticEffect() : UnitModel
         {
             throw new CustomBasicException("Must specify a tactics name to be used since it may not be known at design time");
         }
+        Value = "1.000"; //i think.
         base.Start();
     }
 }
