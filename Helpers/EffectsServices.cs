@@ -315,6 +315,24 @@ public static class EffectsServices
     {
         return GetUnitGatherEffects(IndianUnits.GathererElephant, value);
     }
+    public static BasicList<BasicEffectModel> GetShrineExtraGold(string value)
+    {
+        BasicList<BasicEffectModel> output = [];
+        BasicEffectModel effect;
+        effect = new AutoGatherModel(EnumResource.Gold)
+        {
+            ProtoUnit = IndianUnits.Shrine,
+            Value = value
+        };
+        output.Add(effect);
+        effect = new ShrineAutoGatherModel(EnumResource.Gold)
+        {
+            ProtoUnit = IndianUnits.SacredCow,
+            Value = value
+        };
+        output.Add(effect);
+        return output;
+    }
     public static BasicList<XElement> GetEffects(BasicList<BasicEffectModel> effects)
     {
         BasicList<XElement> output = [];
