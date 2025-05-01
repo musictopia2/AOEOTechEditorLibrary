@@ -12,6 +12,10 @@ public static class TechTreeServices
     }
     public static XElement StartNewTech(string name)
     {
+        return StartNewTech(name, []);
+    }
+    public static XElement StartNewTech(string name, BasicList<BasicPrereqModel> conditions)
+    {
         string source = $"""
             <Tech name = "{name}" type = "Normal">
                 <DBID>5128</DBID>
@@ -24,7 +28,30 @@ public static class TechTreeServices
             </Tech>
             """;
         XElement ourxml = XElement.Parse(source);
+        if (conditions.Count > 0)
+        {
+            source = """
+                <Prereqs>
+                </Prereqs>
+                """;
+            XElement main = XElement.Parse(source);
+            foreach (var item in conditions)
+            {
+                main.Add(item.GetElement());
+            }
+            ourxml.Add(main); //hopefully this simple.
+        }
         return ourxml;
+    }
+    public static XElement GetPrereqs(BasicList<XElement> preqs)
+    {
+        string source = """
+                <Prereqs>
+                </Prereqs>
+                """;
+        XElement output = XElement.Parse(source);
+        output.Add(preqs);
+        return output;
     }
     public static XElement GetEffects(BasicList<XElement> effects)
     {
@@ -39,16 +66,31 @@ public static class TechTreeServices
     //this is for cases where you only have one tech for the entire file.
     public static XElement GetSimpleNewTechTreeWithSingleTech(BasicList<XElement> list, string techName)
     {
+        return GetSimpleNewTechTreeWithSingleTech(list, techName, []);
+    }
+    public static XElement GetSimpleNewTechTreeWithSingleTech(BasicList<XElement> effects, string techName, BasicList<XElement> prepreqs)
+    {
         string startString = """
             <TechTree version="1">
             </TechTree>
             """;
         XElement techs = XElement.Parse(startString);
         XElement ourxml = StartNewTech(techName);
-        XElement effects = GetEffects(list);
-        ourxml.Add(effects);
+        XElement other = GetEffects(effects);
+        ourxml.Add(other);
+        if (prepreqs.Count > 0)
+        {
+            other = GetPrereqs(prepreqs);
+            ourxml.Add(other);
+        }
         techs.Add(ourxml);
         return techs;
+    }
+    public static BasicList<XElement> GetPrereqs(this XElement tech)
+    {
+        BasicList<XElement> output = tech.Element("Prereqs")!.Elements().ToBasicList();
+        BasicList<XElement> temp = output.ToBasicList();
+        return output;
     }
     public static BasicList<XElement> GetEffects(this XElement tech)
     {

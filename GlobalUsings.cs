@@ -8,3 +8,4 @@ global using AOEOCivilizationLibrary.Constants;
 global using uu1 = AOEOBasicDataLibrary.Helpers.UnitGroupConstants;
 global using AOEOBasicDataLibrary.Helpers;
 global using AOEOTechEditorLibrary.Interfaces;
+global using AOEOTechEditorLibrary.Conditions;
