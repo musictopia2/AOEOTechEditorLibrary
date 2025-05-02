@@ -1,12 +1,10 @@
 ﻿namespace AOEOTechEditorLibrary.Conditions;
 public class TechStatusActiveModel(string techName) : BasicPrereqModel
 {
-    required
-    public string TechName { get; set; } = techName;
     public override XElement GetElement()
     {
         string data = $"""
-            <TechStatus status="Active">{TechName}</TechStatus>
+            <TechStatus status="Active">{techName}</TechStatus>
             """;
         return XElement.Parse(data);
     }

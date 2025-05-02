@@ -16,7 +16,17 @@ public static class TechTreeServices
     }
     public static XElement StartNewTech(string name, BasicList<BasicPrereqModel> conditions)
     {
-        string source = $"""
+        string flag;
+        if (conditions.Count == 0)
+        {
+            flag = "IsAward";
+        }
+        else
+        {
+
+            flag = "Volatile";
+        }
+            string source = $"""
             <Tech name = "{name}" type = "Normal">
                 <DBID>5128</DBID>
                 <DisplayNameID>-1</DisplayNameID>
@@ -24,7 +34,7 @@ public static class TechTreeServices
                 <Status>UNOBTAINABLE</Status>
                 <RolloverTextID>-1</RolloverTextID>
                 <ContentPack>18</ContentPack>
-                <Flag>IsAward</Flag>
+                <Flag>{flag}</Flag>
             </Tech>
             """;
         XElement ourxml = XElement.Parse(source);
