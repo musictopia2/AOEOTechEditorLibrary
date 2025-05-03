@@ -1,4 +1,4 @@
-﻿namespace AOEOTechEditorLibrary.Conditions;
+﻿namespace AOEOTechEditorLibrary.Prereqs;
 public class TechStatusActiveModel(string techName) : BasicPrereqModel
 {
     public override XElement GetElement()
@@ -7,5 +7,9 @@ public class TechStatusActiveModel(string techName) : BasicPrereqModel
             <TechStatus status="Active">{techName}</TechStatus>
             """;
         return XElement.Parse(data);
+    }
+    protected override string PrivateGetSerializedString()
+    {
+        return $"Tag: {nameof(TechStatusActiveModel)} TechStatus:  Active,TechName:  {techName}";
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace AOEOTechEditorLibrary.Helpers;
+﻿using AOEOTechEditorLibrary.Prereqs;
+
+namespace AOEOTechEditorLibrary.Helpers;
 public static class TechTreeServices
 {
     public static XElement StartTechTree()

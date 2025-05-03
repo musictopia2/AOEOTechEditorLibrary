@@ -1,4 +1,4 @@
-﻿namespace AOEOTechEditorLibrary.Conditions;
+﻿namespace AOEOTechEditorLibrary.Prereqs;
 public class SpecificAgeModel(int age) : BasicPrereqModel
 {
     public override XElement GetElement()
@@ -8,5 +8,9 @@ public class SpecificAgeModel(int age) : BasicPrereqModel
             <SpecificAge>Age{real}</SpecificAge>
             """;
         return XElement.Parse(data);
+    }
+    protected override string PrivateGetSerializedString()
+    {
+        return $"Tag: {nameof(SpecificAgeModel)} Age:  {age}";
     }
 }

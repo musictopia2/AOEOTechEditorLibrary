@@ -1,4 +1,4 @@
-﻿namespace AOEOTechEditorLibrary.Conditions;
+﻿namespace AOEOTechEditorLibrary.Prereqs;
 public static class TechConditionOperators
 {
     public static string LessThan => "lt";

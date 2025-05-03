@@ -1,4 +1,4 @@
-﻿namespace AOEOTechEditorLibrary.Conditions;
+﻿namespace AOEOTechEditorLibrary.Prereqs;
 public class TypeCountModel : BasicPrereqModel
 {
     /// <summary>
@@ -14,6 +14,7 @@ public class TypeCountModel : BasicPrereqModel
     public string Operator { get; set; } = "";
     public string Unit { get; set; } = "";
     public int Count { get; set; }
+
     public override XElement GetElement()
     {
         if (Unit == "")
@@ -32,5 +33,16 @@ public class TypeCountModel : BasicPrereqModel
             <TypeCount unit="{Unit}" count="{Count}.0000" state="{State}" operator="{Operator}"/>
             """;
         return XElement.Parse(data);
+    }
+    protected internal override void Populate(Dictionary<string, string> values)
+    {
+        State = values["State"];
+        Operator = values["Operator"];
+        Unit = values["Unit"];
+        Count = int.Parse(values["Count"]);
+    }
+    protected override string PrivateGetSerializedString()
+    {
+        return $"Tag: {nameof(TypeCountModel)} State:  {State} Unit:  {Unit}  Operator:  {Operator}  Count:  {Count}";
     }
 }

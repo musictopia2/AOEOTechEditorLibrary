@@ -161,17 +161,17 @@ public abstract class BasicEffectModel
     // Override ToString method to return human-readable string representation
     public override string ToString()
     {
-        return $"Effect Type: {EffectType}, Action: {Action}, SubType: {SubType}, Value: {Value}, Scaling: {Scaling}, " +
-               $"ProtoUnit: {ProtoUnit}, UnitType: {UnitType}, Resource: {Resource}, DamageType: {DamageType}, " +
-               $"Relativity: {Relativity}, TargetType: {TargetType}, Status: {Status}, Content: {Content}";
+        return $"Effect Type:: {EffectType},, Action:: {Action},, SubType:: {SubType},, Value:: {Value},, Scaling:: {Scaling},, " +
+               $"ProtoUnit:: {ProtoUnit},, UnitType:: {UnitType},, Resource:: {Resource},, DamageType:: {DamageType},, " +
+               $"Relativity:: {Relativity},, TargetType:: {TargetType},, Status:: {Status},, Content:: {Content}";
     }
     public static BasicEffectModel CreateFromString(string modelString)
     {
         var rawModel = new RawModel();
-        var properties = modelString.Split(',');
+        var properties = modelString.Split(",,");
         foreach (var property in properties)
         {
-            var keyValue = property.Split(':');
+            var keyValue = property.Split("::");
             if (keyValue.Length == 2)
             {
                 var key = keyValue[0].Trim();
