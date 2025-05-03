@@ -4,7 +4,8 @@ public abstract class BasicEffectModel
     public string ProtoUnit { get; set; } = "";
     protected abstract string Action { get; }
     protected abstract string SubType { get; }
-    protected abstract string Relativity { get; }
+    protected virtual string Scaling { get; } = "0.0000";
+    public virtual string Relativity { get; set; } = "";
     public string Value { get; set; } = "";
     protected abstract string UnitType { get; }
     protected abstract string Resource { get; }
@@ -46,7 +47,7 @@ public abstract class BasicEffectModel
         {
             output.SetAttributeValue("amount", Value);
         }
-        output.SetAttributeValue("scaling", "0.0000");
+        output.SetAttributeValue("scaling", Scaling);
         if (SubType != "")
         {
             output.SetAttributeValue("subtype", SubType);

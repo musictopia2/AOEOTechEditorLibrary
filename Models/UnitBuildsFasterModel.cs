@@ -6,5 +6,5 @@ public class UnitBuildsFasterModel : UnitModel //obviously, if the value is set 
     protected override string UnitType => "Building";
     protected override string Resource => "";
     protected override string DamageType => "";
-    protected override string Relativity => "Percent";
+    public override string Relativity { get; set; } = "Percent";
 }

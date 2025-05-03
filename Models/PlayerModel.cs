@@ -2,7 +2,7 @@
 public abstract class PlayerModel : BasicEffectModel
 {
     protected override string Action => "";
-    protected override string Relativity => "Absolute"; //i think always in this case.
+    public override string Relativity { get; set; } = "Absolute"; //i think always in this case.
     protected override string UnitType => "";
     protected override string DamageType => "";
     protected override string EffectType => "Data";

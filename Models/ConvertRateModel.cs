@@ -1,15 +1,9 @@
 ﻿namespace AOEOTechEditorLibrary.Models;
-public abstract class ConvertRateModel : UnitModel
+public abstract class ConvertRateModel(EnumConvertCategory convert) : UnitModel
 {
-    private readonly EnumConvertCategory _convert;
-
-    public ConvertRateModel(EnumConvertCategory convert)
-    {
-        _convert = convert;
-    }
     protected override string SubType => "WorkRate";
-    protected override string Relativity => "Percent";
-    protected override string UnitType => _convert.ToString();
+    public override string Relativity { get; set; } = "Percent";
+    protected override string UnitType => convert.ToString();
     protected override string Resource => "";
     protected override string DamageType => "";
 }

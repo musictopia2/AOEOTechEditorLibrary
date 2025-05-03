@@ -2,7 +2,7 @@
 public abstract class TechAllBaseModel : BasicEffectModel
 {
     protected override string Action => "";
-    protected override string Relativity => "Percent";
+    public override string Relativity { get; set; } = "Percent";
     protected override string UnitType => "";
     protected override string DamageType => "";
     protected override string EffectType => "Data";

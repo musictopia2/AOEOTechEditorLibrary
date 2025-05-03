@@ -6,5 +6,5 @@ public class IgnoreArmorModel : UnitModel
     protected override string UnitType => "";
     protected override string Resource => "";
     protected override string DamageType => "";
-    protected override string Relativity => "Absolute";
+    public override string Relativity { get; set; } = "Absolute";
 }

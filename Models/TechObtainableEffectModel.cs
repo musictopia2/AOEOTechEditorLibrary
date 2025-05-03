@@ -3,7 +3,7 @@ public class TechObtainableEffectModel : BasicEffectModel
 {
     protected override string Action => "";
     protected override string SubType => "";
-    protected override string Relativity => "";
+    public override string Relativity { get; set; } = "";
     protected override string UnitType => "";
     protected override string Resource => "";
     protected override string DamageType => "";

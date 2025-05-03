@@ -5,5 +5,5 @@ public abstract class MaximumRangeModel : UnitModel
     protected override string UnitType => "";
     protected override string Resource => "";
     protected override string DamageType => "";
-    protected override string Relativity => "Percent";
+    public override string Relativity { get; set; } = "Percent";
 }
