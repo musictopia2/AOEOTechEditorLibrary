@@ -1,12 +1,9 @@
 ﻿@typeparam T
-<WrapLayout ColumnWidth="300px" T=T RenderList="TechList" Context="item">
-
-    <div class="@CssName(item) borders" @onclick="() => TechClicked(item)">
-        <div>
-            @item.Title
-        </div>
-        <div>
-            @item.Description
-        </div>
+<SelectableComponent ColumnWidth="300px" OnSelected=OnSelected Context="item" ItemList="TechList">
+    <div>
+        @item.Title
     </div>
-</WrapLayout>
+    <div>
+        @item.Description
+    </div>
+</SelectableComponent>
