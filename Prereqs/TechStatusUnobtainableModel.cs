@@ -10,6 +10,10 @@ public class TechStatusUnobtainableModel(string techName) : BasicPrereqModel
     }
     protected override string PrivateGetSerializedString()
     {
-        return $"Tag: {nameof(TechStatusUnobtainableModel)} TechStatus:  Unobtainable,  TechName:  {techName}";
+        Dictionary<string, string> pairs = [];
+        pairs.Add("Tag", nameof(TechStatusUnobtainableModel));
+        pairs.Add("TechStatus", "Unobtainable");
+        pairs.Add("TechName", techName);
+        return kk1.Serialize(pairs);
     }
 }

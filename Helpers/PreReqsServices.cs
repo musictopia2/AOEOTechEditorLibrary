@@ -1,16 +1,26 @@
 ﻿namespace AOEOTechEditorLibrary.Helpers;
 public static class PrereqsServices
 {
-    public static BasicList<XElement> GetPrereqs(BasicList<BasicPrereqModel> prereqs)
+    public static XElement GetPrereqsElement(BasicList<BasicPrereqModel> prereqs)
+    {
+        XElement output = new("Prereqs");
+        foreach (BasicPrereqModel prereq in prereqs)
+        {
+            output.Add(prereq.GetElement());
+        }
+        return output;
+    }
+
+    public static BasicList<XElement> GetPrereqsList(BasicList<BasicPrereqModel> prereqs)
     {
         BasicList<XElement> output = [];
         foreach (BasicPrereqModel prereq in prereqs)
         {
-            XElement xml = prereq.GetElement();
-            output.Add(xml);
+            output.Add(prereq.GetElement());
         }
         return output;
     }
+
 
     public static BasicList<BasicPrereqModel> GetPreqs(XElement prereqsElement)
     {

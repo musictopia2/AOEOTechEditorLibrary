@@ -11,6 +11,9 @@ public class SpecificAgeModel(int age) : BasicPrereqModel
     }
     protected override string PrivateGetSerializedString()
     {
-        return $"Tag: {nameof(SpecificAgeModel)} Age:  {age}";
+        Dictionary<string, string> pairs = [];
+        pairs.Add("Tag", nameof(SpecificAgeModel));
+        pairs.Add("Age", age.ToString());
+        return kk1.Serialize(pairs);
     }
 }

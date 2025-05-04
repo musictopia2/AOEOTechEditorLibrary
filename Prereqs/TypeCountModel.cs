@@ -43,6 +43,12 @@ public class TypeCountModel : BasicPrereqModel
     }
     protected override string PrivateGetSerializedString()
     {
-        return $"Tag: {nameof(TypeCountModel)} State:  {State} Unit:  {Unit}  Operator:  {Operator}  Count:  {Count}";
+        Dictionary<string, string> values = [];
+        values.Add("Tag", nameof(TypeCountModel));
+        values.Add("State", State);
+        values.Add("Unit", Unit);
+        values.Add("Operator", Operator);
+        values.Add("Count", Count.ToString());
+        return kk1.Serialize(values);
     }
 }

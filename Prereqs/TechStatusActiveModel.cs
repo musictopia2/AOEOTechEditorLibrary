@@ -10,6 +10,10 @@ public class TechStatusActiveModel(string techName) : BasicPrereqModel
     }
     protected override string PrivateGetSerializedString()
     {
-        return $"Tag: {nameof(TechStatusActiveModel)} TechStatus:  Active,TechName:  {techName}";
+        Dictionary<string, string> pairs = [];
+        pairs.Add("Tag", nameof(TechStatusActiveModel));
+        pairs.Add("TechStatus", "Active");
+        pairs.Add("TechName", techName);
+        return kk1.Serialize(pairs);
     }
 }
