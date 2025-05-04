@@ -13,3 +13,4 @@ global using kk1 = CommonBasicLibraries.TextProcessing.KeyValuePairHelpers.Basic
 global using System.Text;
 global using AOEOTechEditorLibrary.Shared;
 global using AOEOTechEditorLibrary.Techs;
+global using dd1 = AOEOBasicDataLibrary.Helpers.BasicGameLocationHelpers;

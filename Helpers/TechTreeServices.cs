@@ -1,7 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Components.Web;
-
-namespace AOEOTechEditorLibrary.Helpers;
+﻿namespace AOEOTechEditorLibrary.Helpers;
 public static class TechTreeServices
 {
     public static XElement StartTechTree()
@@ -14,11 +11,44 @@ public static class TechTreeServices
         return techs;
     }
     private static int _id = 0;
-    public static void Reset()
+    private static void Reset()
     {
         _id = 1; //i want to start with 1
     }
+    public static BasicList<BasicTechModel> LoadRawCompleteTechs()
+    {
+        string path = dd1.RawTechLocation;
+        XElement source = XElement.Load(path);
+        var list = new BasicList<BasicTechModel>();
+        foreach (var techElement in source.Elements("Tech"))
+        {
+            var model = BasicTechModel.CreateFromXml(techElement) ?? throw new CustomBasicException("Fail in parsing raw techs");
+            list.Add(model);
+        }
+        Reset(); //this is when to reset it.
+        return list;
+    }
+    public static void SaveTechsToGameFolder(BasicList<BasicTechModel> techs)
+    {
+        // Create the root element
+        XElement root = new("TechTree");
+        root.SetAttributeValue("version", "1");
 
+        // Add each tech's XML
+        foreach (var tech in techs)
+        {
+            root.Add(tech.GetElement());
+        }
+
+        // Create XDocument with declaration
+        XDocument doc = new(
+            new XDeclaration("1.0", "utf-8", "yes"),
+            root
+        );
+
+        // Save to file
+        doc.Save(dd1.NewTechLocation);
+    }
     public static BasicTechModel CreateNewTechModel(bool isGlobal = false)
     {
         _id++;
