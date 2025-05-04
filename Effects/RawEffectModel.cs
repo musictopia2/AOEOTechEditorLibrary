@@ -1,7 +1,5 @@
-﻿using AOEOTechEditorLibrary.Effects;
-
-namespace AOEOTechEditorLibrary.Effects;
-public class RawModel : BasicEffectModel
+﻿namespace AOEOTechEditorLibrary.Effects;
+public class RawEffectModel : BasicEffectModel
 {
     public string CustomAction { get; set; } = "";
     public string CustomSubType { get; set; } = "";
@@ -22,5 +20,5 @@ public class RawModel : BasicEffectModel
     protected override string Status => CustomStatus;
     protected override string Scaling => CustomScaling;
     // Static method to create RawModel from XML
-    
+
 }

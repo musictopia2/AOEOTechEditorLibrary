@@ -123,7 +123,7 @@ public abstract class BasicEffectModel
         {
             return null;
         }
-        var rawModel = new RawModel
+        var rawModel = new RawEffectModel
         {
             CustomEffectType = element.Attribute("type")?.Value ?? "",
             CustomScaling = element.Attribute("scaling")?.Value ?? "0.0000",
@@ -187,7 +187,7 @@ public abstract class BasicEffectModel
     }
     public static BasicEffectModel CreateFromString(string modelString)
     {
-        var rawModel = new RawModel();
+        var rawModel = new RawEffectModel();
 
         // Deserialize the modelString into a dictionary
         Dictionary<string, string> values = kk1.Deserialize(modelString);
