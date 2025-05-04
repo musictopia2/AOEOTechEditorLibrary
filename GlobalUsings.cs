@@ -12,3 +12,4 @@ global using AOEOTechEditorLibrary.Prereqs;
 global using kk1 = CommonBasicLibraries.TextProcessing.KeyValuePairHelpers.BasicKeyValueSerialization;
 global using System.Text;
 global using AOEOTechEditorLibrary.Shared;
+global using AOEOTechEditorLibrary.Techs;

@@ -11,6 +11,7 @@ public class BasicTechModel
     public string RolloverTextID { get; set; } = "-1";
     public string ContentPack { get; set; } = "18";
     public string Icon { get; set; } = "";
+    public virtual bool Global { get; } = false;
     public static BasicTechModel? CreateFromXml(XElement element)
     {
         if (element.Name.LocalName != "Tech")

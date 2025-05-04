@@ -1,4 +1,5 @@
-﻿using AOEOTechEditorLibrary.Prereqs;
+﻿
+using Microsoft.AspNetCore.Components.Web;
 
 namespace AOEOTechEditorLibrary.Helpers;
 public static class TechTreeServices
@@ -12,6 +13,33 @@ public static class TechTreeServices
         XElement techs = XElement.Parse(startString);
         return techs;
     }
+    private static int _id = 0;
+    public static void Reset()
+    {
+        _id = 1; //i want to start with 1
+    }
+
+    public static BasicTechModel CreateNewTechModel(bool isGlobal = false)
+    {
+        _id++;
+        string name = $"CustomTech{_id}";
+        return CreateNewTechModel(name, isGlobal);
+    }
+    public static BasicTechModel CreateNewTechModel(string name, bool isGlobal = false)
+    {
+        BasicTechModel output;
+        if (isGlobal)
+        {
+            output = new GlobalTechModel();
+        }
+        else
+        {
+            output = new BasicTechModel();
+        }
+        output.Name = name;
+        return output;
+    }
+
     public static XElement StartNewTech(string name)
     {
         return StartNewTech(name, []);
@@ -28,7 +56,7 @@ public static class TechTreeServices
 
             flag = "Volatile";
         }
-            string source = $"""
+        string source = $"""
             <Tech name = "{name}" type = "Normal">
                 <DBID>5128</DBID>
                 <DisplayNameID>-1</DisplayNameID>
@@ -98,10 +126,16 @@ public static class TechTreeServices
         techs.Add(ourxml);
         return techs;
     }
+    public static void AddTechsToTree(this XElement element, BasicList<BasicTechModel> techs)
+    {
+        foreach (var item in techs)
+        {
+            element.Add(item.GetElement());
+        }
+    }
     public static BasicList<XElement> GetPrereqs(this XElement tech)
     {
         BasicList<XElement> output = tech.Element("Prereqs")!.Elements().ToBasicList();
-        BasicList<XElement> temp = output.ToBasicList();
         return output;
     }
     public static BasicList<XElement> GetEffects(this XElement tech)
