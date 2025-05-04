@@ -2,7 +2,7 @@
 global using CommonBasicLibraries.CollectionClasses;
 global using CommonBasicLibraries.AdvancedGeneralFunctionsAndProcesses.BasicExtensions;
 global using CommonBasicLibraries.BasicDataSettingsAndProcesses;
-global using AOEOTechEditorLibrary.Models;
+global using AOEOTechEditorLibrary.Effects;
 global using Microsoft.AspNetCore.Components;
 global using AOEOCivilizationLibrary.Constants;
 global using uu1 = AOEOBasicDataLibrary.Helpers.UnitGroupConstants;
@@ -10,3 +10,5 @@ global using AOEOBasicDataLibrary.Helpers;
 global using AOEOTechEditorLibrary.Interfaces;
 global using AOEOTechEditorLibrary.Prereqs;
 global using kk1 = CommonBasicLibraries.TextProcessing.KeyValuePairHelpers.BasicKeyValueSerialization;
+global using System.Text;
+global using AOEOTechEditorLibrary.Shared;
