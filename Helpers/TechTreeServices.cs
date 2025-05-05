@@ -11,43 +11,50 @@ public static class TechTreeServices
         return techs;
     }
     private static int _id = 0;
-    private static void Reset()
+    public static void Reset()
     {
         _id = 1; //i want to start with 1
     }
-    public static BasicList<BasicTechModel> LoadRawCompleteTechs()
+    //public static BasicList<BasicTechModel> LoadRawCompleteTechs()
+    //{
+    //    string path = dd1.RawTechLocation;
+    //    XElement source = XElement.Load(path);
+    //    var list = new BasicList<BasicTechModel>();
+    //    foreach (var techElement in source.Elements("Tech"))
+    //    {
+    //        var model = BasicTechModel.CreateFromXml(techElement) ?? throw new CustomBasicException("Fail in parsing raw techs");
+    //        list.Add(model);
+    //    }
+    //    Reset(); //this is when to reset it.
+    //    return list;
+    //}
+    public static void SaveAdditionalTechsToGameFolder(BasicList<BasicTechModel> techs)
     {
+
         string path = dd1.RawTechLocation;
-        XElement source = XElement.Load(path);
-        var list = new BasicList<BasicTechModel>();
-        foreach (var techElement in source.Elements("Tech"))
-        {
-            var model = BasicTechModel.CreateFromXml(techElement) ?? throw new CustomBasicException("Fail in parsing raw techs");
-            list.Add(model);
-        }
-        Reset(); //this is when to reset it.
-        return list;
-    }
-    public static void SaveTechsToGameFolder(BasicList<BasicTechModel> techs)
-    {
+        XElement source = XElement.Parse(path);
+
+
         // Create the root element
-        XElement root = new("TechTree");
-        root.SetAttributeValue("version", "1");
+        //XElement root = new("TechTree");
+        //root.SetAttributeValue("version", "1");
 
         // Add each tech's XML
         foreach (var tech in techs)
         {
-            root.Add(tech.GetElement());
+            source.Add(tech.GetElement());
         }
+        //if this breaks it, then rethink.
+        //at least i can easily recover
 
         // Create XDocument with declaration
-        XDocument doc = new(
-            new XDeclaration("1.0", "utf-8", "yes"),
-            root
-        );
+        //XDocument doc = new(
+        //    new XDeclaration("1.0", "utf-8", "yes"),
+        //    root
+        //);
 
         // Save to file
-        doc.Save(dd1.NewTechLocation);
+        source.Save(dd1.NewTechLocation);
     }
     public static BasicTechModel CreateNewTechModel(bool isGlobal = false)
     {
