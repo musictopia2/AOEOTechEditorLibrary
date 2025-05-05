@@ -13,7 +13,7 @@ public static class TechTreeServices
     private static int _id = 0;
     public static void Reset()
     {
-        _id = 1; //i want to start with 1
+        _id = 0; //i want to start with 1
     }
     //public static BasicList<BasicTechModel> LoadRawCompleteTechs()
     //{
