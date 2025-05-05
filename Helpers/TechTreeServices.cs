@@ -32,7 +32,7 @@ public static class TechTreeServices
     {
 
         string path = dd1.RawTechLocation;
-        XElement source = XElement.Parse(path);
+        XElement source = XElement.Load(path);
 
 
         // Create the root element
