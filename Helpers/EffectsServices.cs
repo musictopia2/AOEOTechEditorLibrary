@@ -1,8 +1,7 @@
-﻿namespace AOEOTechEditorLibrary.Helpers;
+﻿using Microsoft.Extensions.Primitives;
+namespace AOEOTechEditorLibrary.Helpers;
 public static class EffectsServices
 {
-
-    
     public static BasicList<BasicEffectModel> GetRangeTechOnRomanShips(string value)
     {
         BasicList<BasicEffectModel> output = [];
@@ -212,23 +211,34 @@ public static class EffectsServices
         output.Add(seconds);
         return output;
     }
-    public static BasicList<BasicEffectModel> GetHealingEffects(string protoName, string value)
+    public static BasicEffectModel GetSelfHealEffect(string protoName, string value)
     {
-        BasicList<BasicEffectModel> output = [];
-        EnableSelfHealModel firsts = new()
-        {
-            ProtoUnit = protoName,
-            Value = "1.0000"
-        };
-        output.Add(firsts);
-        ModifySelfHealModel seconds = new()
+        BasicEffectModel output = new ModifySelfHealModel()
         {
             ProtoUnit = protoName,
             Value = value
         };
-        output.Add(seconds);
         return output;
     }
+    //can't rely on this anymore because if this gets disabled, then hosed.
+
+    //public static BasicList<BasicEffectModel> GetHealingEffects(string protoName, string value)
+    //{
+    //    BasicList<BasicEffectModel> output = [];
+    //    EnableSelfHealModel firsts = new()
+    //    {
+    //        ProtoUnit = protoName,
+    //        Value = "1.0000"
+    //    };
+    //    output.Add(firsts);
+    //    ModifySelfHealModel seconds = new()
+    //    {
+    //        ProtoUnit = protoName,
+    //        Value = value
+    //    };
+    //    output.Add(seconds);
+    //    return output;
+    //}
     public static BasicList<BasicEffectModel> GetGatherElephantCarryEffects(string value)
     {
         return GetUnitCarryEffects(IndianUnits.GathererElephant, value);
@@ -335,12 +345,265 @@ public static class EffectsServices
         output.Add(effect);
         return output;
     }
+    public static BasicEffectModel GetBonusDamageProtection(string protoUnit, string value)
+    {
+        return new BonusDamageProtectionModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetBuildingWorking(string protoUnit, string value)
+    {
+        return new BuildingWorkingModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetBuildLimit(string protoUnit, string value)
+    {
+        return new BuildLimitModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetBuildPoints(string protoUnit, string value)
+    {
+        return new BuildPointsModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetCostAll(string protoUnit, string value)
+    {
+        return new CostAllModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
     public static BasicEffectModel GetCustomTactic(string tacticName, string protoUnit)
     {
         return new CustomTacticEffect
         {
             CustomTacticName = tacticName,
             ProtoUnit = protoUnit
+        };
+    }
+    public static BasicEffectModel GetDamage(string protoUnit, string value)
+    {
+        return new DamageModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    //this will be a new global tech.
+    /// <summary>
+    /// Enables self-healing on the given proto unit. Value is fixed at "1.000".
+    /// Should include as global tech so never gets disabled even if you lose autohealing.
+    /// </summary>
+    public static BasicEffectModel GetEnableSelfHeal(string protoUnit)
+    {
+        return new EnableSelfHealModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = "1.000"
+        };
+    }
+    public static BasicEffectModel GetHealRange(string protoUnit, string value)
+    {
+        return new HealRangeModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetHealRate(string protoUnit, string value)
+    {
+        return new HealRateModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetHitPoints(string protoUnit, string value)
+    {
+        return new HitPointsModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetIgnoreArmor(string protoUnit, string value)
+    {
+        return new IgnoreArmorModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetLineOfSight(string protoUnit, string value)
+    {
+        return new LineOfSightModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetBabylonMaximumContained(string value)
+    {
+        return new MaximumContainedModel()
+        {
+            ProtoUnit = bb1.SiegeTower, //the only unit allowed to get this
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetMaximumRange(string protoUnit, string value)
+    {
+        return new MaximumRange1Model()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetMeleeDamage(string protoUnit, string value)
+    {
+        return new MeleeDamageModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetPierceDamage(string protoUnit, string value)
+    {
+        return new PierceDamageModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicList<BasicEffectModel> GetMaxedOutPopulation()
+    {
+        BasicList<BasicEffectModel> output = [];
+        BasicEffectModel effect;
+        effect = new PopulationCapAdditionModel()
+        {
+            ProtoUnit = uu1.TownCenter,
+            Value = "200.00"
+        };
+        output.Add(effect);
+        effect = new PopulationExtraModel()
+        {
+            ProtoUnit = uu1.TownCenter,
+            Value = "200.00"
+        };
+        output.Add(effect);
+        return output;
+    }
+    public static BasicEffectModel GetPopulationCapAdditional(string protoUnit, string value)
+    {
+        return new PopulationCapAdditionModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetPopulationCount(string protoUnit, string value)
+    {
+        return new PopulationCountModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetPopulationExtra(string value)
+    {
+        return new PopulationExtraModel()
+        {
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetRaw()
+    {
+        return new RawEffectModel();
+    }
+    public static BasicEffectModel GetSpecialGather(string action, EnumResource resource, string protoUnit, string value)
+    {
+        return new SpecialGatherModel(resource)
+        {
+            CustomGatherAction = action,
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetSpeed(string protoUnit, string value)
+    {
+        return new SpeedEffectModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetTechAllCostAll(string value)
+    {
+        return new TechAllCostAllModel()
+        {
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetTechAllResearchPoints(string value)
+    {
+        return new TechAllResearchPointsModel()
+        {
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetTechObtainableEffect(string techToEnable)
+    {
+        return new TechObtainableEffectModel()
+        {
+            Content = techToEnable
+        };
+    }
+    public static BasicEffectModel GetTechSingleCostAll(string techUsed)
+    {
+        return new TechSingleCostAllModel()
+        {
+            Content = techUsed
+        };
+    }
+    public static BasicEffectModel GetTechSingleResearchPoints(string techUsed)
+    {
+        return new TechSingleResearchPointsModel()
+        {
+            Content = techUsed
+        };
+    }
+    public static BasicEffectModel GetTerminateUnit(string protoUnit)
+    {
+        return new TerminateUnitModel()
+        {
+            ProtoUnit = protoUnit,
+        };
+    }
+    public static BasicEffectModel GetTrainingPoints(string protoUnit, string value)
+    {
+        return new TrainingPointsModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
+    public static BasicEffectModel GetUnitBuildsFaster(string protoUnit, string value)
+    {
+        return new UnitBuildsFasterModel()
+        {
+            ProtoUnit = protoUnit,
+            Value = value
         };
     }
 }
