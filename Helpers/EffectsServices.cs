@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Primitives;
-namespace AOEOTechEditorLibrary.Helpers;
+﻿namespace AOEOTechEditorLibrary.Helpers;
 public static class EffectsServices
 {
     public static BasicList<BasicEffectModel> GetRangeTechOnRomanShips(string value)
@@ -220,25 +219,6 @@ public static class EffectsServices
         };
         return output;
     }
-    //can't rely on this anymore because if this gets disabled, then hosed.
-
-    //public static BasicList<BasicEffectModel> GetHealingEffects(string protoName, string value)
-    //{
-    //    BasicList<BasicEffectModel> output = [];
-    //    EnableSelfHealModel firsts = new()
-    //    {
-    //        ProtoUnit = protoName,
-    //        Value = "1.0000"
-    //    };
-    //    output.Add(firsts);
-    //    ModifySelfHealModel seconds = new()
-    //    {
-    //        ProtoUnit = protoName,
-    //        Value = value
-    //    };
-    //    output.Add(seconds);
-    //    return output;
-    //}
     public static BasicList<BasicEffectModel> GetGatherElephantCarryEffects(string value)
     {
         return GetUnitCarryEffects(IndianUnits.GathererElephant, value);
@@ -344,6 +324,14 @@ public static class EffectsServices
         };
         output.Add(effect);
         return output;
+    }
+    public static BasicEffectModel GetArmor(string protoUnit, EnumDamageCategory damage, string value)
+    {
+        return new ArmorModel(damage)
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
     }
     public static BasicEffectModel GetBonusDamageProtection(string protoUnit, string value)
     {
