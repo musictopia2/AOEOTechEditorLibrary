@@ -1,6 +1,4 @@
-﻿using AOEOTechEditorLibrary.Effects;
-
-namespace AOEOTechEditorLibrary.Effects;
+﻿namespace AOEOTechEditorLibrary.Effects;
 public class TechObtainableEffectModel : BasicEffectModel
 {
     protected override string Action => "";

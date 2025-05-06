@@ -1,6 +1,4 @@
-﻿using AOEOTechEditorLibrary.Shared;
-
-namespace AOEOTechEditorLibrary.Effects;
+﻿namespace AOEOTechEditorLibrary.Effects;
 public class SpecialGatherModel(EnumResource resource) : AutoGatherModel(resource)
 {
     public string CustomGatherAction { get; set; } = "";

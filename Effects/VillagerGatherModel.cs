@@ -1,6 +1,4 @@
-﻿using AOEOTechEditorLibrary.Effects;
-
-namespace AOEOTechEditorLibrary.Effects;
+﻿namespace AOEOTechEditorLibrary.Effects;
 public class VillagerGatherModel(EnumGatherCategory category) : UnitModel
 {
     protected override string Action => "Gather";

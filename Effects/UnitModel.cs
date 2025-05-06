@@ -1,6 +1,4 @@
-﻿using AOEOTechEditorLibrary.Effects;
-
-namespace AOEOTechEditorLibrary.Effects;
+﻿namespace AOEOTechEditorLibrary.Effects;
 public abstract class UnitModel : BasicEffectModel
 {
     protected override string EffectType => "Data";

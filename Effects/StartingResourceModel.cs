@@ -1,6 +1,4 @@
-﻿using AOEOTechEditorLibrary.Shared;
-
-namespace AOEOTechEditorLibrary.Effects;
+﻿namespace AOEOTechEditorLibrary.Effects;
 public class StartingResourceModel : PlayerModel
 {
     private readonly EnumResource _resource;

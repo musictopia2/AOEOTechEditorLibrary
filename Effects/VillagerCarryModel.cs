@@ -1,6 +1,4 @@
-﻿using AOEOTechEditorLibrary.Shared;
-
-namespace AOEOTechEditorLibrary.Effects;
+﻿namespace AOEOTechEditorLibrary.Effects;
 public class VillagerCarryModel(EnumResource resource) : UnitModel
 {
     protected override string Action => "";
