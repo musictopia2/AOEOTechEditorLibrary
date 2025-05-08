@@ -85,6 +85,10 @@ public class BasicTechModel
     }
     protected virtual BasicList<string> GetFlags()
     {
+        if (ResearchPoints != "0.0000" || Costs.Count > 0)
+        {
+            return ["IsAward"]; //has to be isaward  otherwise, ignores cost and research points.
+        }
         if (Prereqs.Count > 0)
         {
             return ["Volatile"];
@@ -117,6 +121,7 @@ public class BasicTechModel
         {
             throw new CustomBasicException("I think should have at least one flag");
         }
+        
     }
     public XElement GetElement()
     {
