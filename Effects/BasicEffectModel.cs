@@ -191,15 +191,36 @@ public abstract class BasicEffectModel
 
         // Deserialize the modelString into a dictionary
         Dictionary<string, string> values = kk1.Deserialize(modelString);
-
+        var keyMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        { "Effect Type", "Effect Type" },
+        { "Type", "Effect Type" }, // alias
+        { "Action", "Action" },
+        { "SubType", "SubType" },
+        { "Value", "Value" },
+        { "Scaling", "Scaling" },
+        { "ProtoUnit", "ProtoUnit" },
+        { "UnitType", "UnitType" },
+        { "Resource", "Resource" },
+        { "DamageType", "DamageType" },
+        { "Relativity", "Relativity" },
+        { "TargetType", "TargetType" },
+        { "Status", "Status" },
+        { "Content", "Content" }
+    };
         // Loop through the dictionary and set the corresponding property of rawModel
         foreach (var property in values)
         {
             var key = property.Key.Trim();    // The property name (e.g., "Effect Type")
             var value = property.Value.Trim(); // The value associated with the property (e.g., "SomeEffect")
 
+            if (!keyMap.TryGetValue(key, out var normalizedKey))
+            {
+                throw new FormatException($"Unknown property '{key}' in string: {modelString}");
+            }
+
             // Depending on the key, set the corresponding property
-            switch (key)
+            switch (normalizedKey)
             {
                 case "Effect Type":
                     rawModel.CustomEffectType = value;
