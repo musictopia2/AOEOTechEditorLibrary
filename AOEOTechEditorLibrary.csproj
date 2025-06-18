@@ -14,8 +14,8 @@
   <ItemGroup>
     <PackageReference Include="AOEOBasicDataLibrary" Version="9.0.1" />
     <PackageReference Include="AOEOCivilizationLibrary" Version="9.0.6" />
-    <PackageReference Include="BasicBlazorLibrary" Version="9.0.27" />
-    <PackageReference Include="CommonBasicLibraries" Version="9.0.32" />
+    <PackageReference Include="BasicBlazorLibrary" Version="9.0.65" />
+    <PackageReference Include="CommonBasicLibraries" Version="9.0.34" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

@@ -169,6 +169,7 @@ public abstract class BasicEffectModel
     // Override ToString method to return human-readable string representation
     public override string ToString()
     {
+        Start(); //try this first in case it has to populate something else first.
         Dictionary<string, string> values = [];
         values.Add("Effect Type", EffectType);
         values.Add("Action", Action);
