@@ -163,32 +163,36 @@ public static class TechTreeServices
         techs.Add(ourxml);
         return techs;
     }
-    public static void AddTechsToTree(this XElement element, BasicList<BasicTechModel> techs)
+    extension (XElement source)
     {
-        foreach (var item in techs)
+        public void AddTechsToTree(BasicList<BasicTechModel> techs)
         {
-            element.Add(item.GetElement());
+            foreach (var item in techs)
+            {
+                source.Add(item.GetElement());
+            }
+        }
+        public BasicList<XElement> GetPrereqs()
+        {
+            BasicList<XElement> output = source.Element("Prereqs")!.Elements().ToBasicList();
+            return output;
+        }
+        public BasicList<XElement> GetEffects()
+        {
+            //reserve the possibility of no techvaluepairs.
+            BasicList<XElement> output = source.Element("Effects")!.Elements().ToBasicList();
+            BasicList<XElement> temp = output.ToBasicList();
+            foreach (var item in temp)
+            {
+                if (CanUseTech(item) == false)
+                {
+                    output.RemoveSpecificItem(item); //i think
+                }
+            } //this case just gets the efects of the tech element and takes into account no deer for the advisor still.
+            return output;
         }
     }
-    public static BasicList<XElement> GetPrereqs(this XElement tech)
-    {
-        BasicList<XElement> output = tech.Element("Prereqs")!.Elements().ToBasicList();
-        return output;
-    }
-    public static BasicList<XElement> GetEffects(this XElement tech)
-    {
-        //reserve the possibility of no techvaluepairs.
-        BasicList<XElement> output = tech.Element("Effects")!.Elements().ToBasicList();
-        BasicList<XElement> temp = output.ToBasicList();
-        foreach (var item in temp)
-        {
-            if (CanUseTech(item) == false)
-            {
-                output.RemoveSpecificItem(item); //i think
-            }
-        } //this case just gets the efects of the tech element and takes into account no deer for the advisor still.
-        return output;
-    }
+    
     private static bool CanUseTech(XElement effect)
     {
         var item = effect.Attribute("action");
