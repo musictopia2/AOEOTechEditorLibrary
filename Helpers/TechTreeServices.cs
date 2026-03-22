@@ -64,31 +64,17 @@ public static class TechTreeServices
     //}
     public static void SaveAdditionalTechsToGameFolder(BasicList<BasicTechModel> techs)
     {
+        XElement source = XElement.Load(dd1.RawTechLocation);
+        SaveAdditionalTechsToExistingSource(source, techs);
+        source.Save(dd1.NewTechLocation);
+    }
 
-        string path = dd1.RawTechLocation;
-        XElement source = XElement.Load(path);
-
-
-        // Create the root element
-        //XElement root = new("TechTree");
-        //root.SetAttributeValue("version", "1");
-
-        // Add each tech's XML
+    public static void SaveAdditionalTechsToExistingSource(XElement source, BasicList<BasicTechModel> techs)
+    {
         foreach (var tech in techs)
         {
             source.Add(tech.GetElement());
         }
-        //if this breaks it, then rethink.
-        //at least i can easily recover
-
-        // Create XDocument with declaration
-        //XDocument doc = new(
-        //    new XDeclaration("1.0", "utf-8", "yes"),
-        //    root
-        //);
-
-        // Save to file
-        source.Save(dd1.NewTechLocation);
     }
     public static BasicTechModel CreateNewTechModel(bool isGlobal = false)
     {
