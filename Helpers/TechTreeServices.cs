@@ -15,6 +15,40 @@ public static class TechTreeServices
     {
         _id = 0; //i want to start with 1
     }
+
+
+    public static void SetSpecificAgePrereq(XElement techTree, string techName, string ageName)
+    {
+        XElement tech = techTree.Elements("Tech")
+            .FirstOrDefault(x => (string?)x.Attribute("name") == techName)
+            ?? throw new InvalidOperationException($"Tech '{techName}' was not found.");
+
+        XElement? prereqs = tech.Element("Prereqs");
+        if (prereqs == null)
+        {
+            prereqs = new XElement("Prereqs");
+
+            XElement? effects = tech.Element("Effects");
+            if (effects != null)
+            {
+                effects.AddBeforeSelf(prereqs);
+            }
+            else
+            {
+                tech.Add(prereqs);
+            }
+        }
+
+        XElement? specificAge = prereqs.Element("SpecificAge");
+        if (specificAge == null)
+        {
+            specificAge = new XElement("SpecificAge");
+            prereqs.Add(specificAge);
+        }
+
+        specificAge.Value = ageName;
+    }
+
     //public static BasicList<BasicTechModel> LoadRawCompleteTechs()
     //{
     //    string path = dd1.RawTechLocation;
