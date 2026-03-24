@@ -16,6 +16,24 @@ public static class TechTreeServices
         _id = 0; //i want to start with 1
     }
 
+    public static int GetTechId(XElement techTree, string techName)
+    {
+        int index = 0;
+        foreach (var tech in techTree.Elements("Tech"))
+        {
+            var nameAttr = tech.Attribute("name")?.Value;
+
+            if (string.Equals(nameAttr, techName, StringComparison.Ordinal))
+            {
+                return index; // position = tech id
+            }
+
+            index++;
+        }
+        throw new CustomBasicException($"No Tech Found For {techName}");
+    }
+
+
 
     public static void SetSpecificAgePrereq(XElement techTree, string techName, string ageName)
     {
@@ -23,30 +41,33 @@ public static class TechTreeServices
             .FirstOrDefault(x => (string?)x.Attribute("name") == techName)
             ?? throw new InvalidOperationException($"Tech '{techName}' was not found.");
 
+        //tech.Element("Status")!.Value = "OBTAINABLE";
+        // Ensure Flag IsAward
+        XElement? flag = tech.Elements("Flag")
+            .FirstOrDefault(x => (string?)x == "IsAward");
+
+        if (flag == null)
+        {
+            tech.Add(new XElement("Flag", "IsAward"));
+        }
+
+
+        XElement? points = tech.Element("ResearchPoints");
+        if (points is null)
+        {
+            tech.Add(new XElement("ResearchPoints", "0.0000"));
+        }
+
+        //return; //for testing first.
+
         XElement? prereqs = tech.Element("Prereqs");
         if (prereqs == null)
         {
             prereqs = new XElement("Prereqs");
-
-            XElement? effects = tech.Element("Effects");
-            if (effects != null)
-            {
-                effects.AddBeforeSelf(prereqs);
-            }
-            else
-            {
-                tech.Add(prereqs);
-            }
+            tech.AddFirst(prereqs);
         }
 
-        XElement? specificAge = prereqs.Element("SpecificAge");
-        if (specificAge == null)
-        {
-            specificAge = new XElement("SpecificAge");
-            prereqs.Add(specificAge);
-        }
-
-        specificAge.Value = ageName;
+        prereqs.SetElementValue("SpecificAge", ageName);
     }
 
     //public static BasicList<BasicTechModel> LoadRawCompleteTechs()
