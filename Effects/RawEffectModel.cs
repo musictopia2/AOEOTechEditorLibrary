@@ -19,6 +19,7 @@ public class RawEffectModel : BasicEffectModel
     protected override string TargetType => CustomTargetType;
     protected override string Status => CustomStatus;
     protected override string Scaling => CustomScaling;
+    public override bool GrantsStone => Enum.TryParse(CustomResource, out EnumResource res) && res == EnumResource.Stone;
     // Static method to create RawModel from XML
 
 }

@@ -13,6 +13,12 @@ public abstract class BasicEffectModel
     protected abstract string EffectType { get; }
     protected abstract string TargetType { get; }
     protected abstract string Status { get; }
+
+    /// <summary>
+    /// Returns true if this effect grants stone to the player
+    /// </summary>
+    public virtual bool GrantsStone => false;
+
     public string Content { get; set; } = "";
     private bool NeedsAllActions()
     {
