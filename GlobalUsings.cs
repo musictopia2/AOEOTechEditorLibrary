@@ -15,3 +15,4 @@ global using AOEOTechEditorLibrary.Shared;
 global using AOEOTechEditorLibrary.Techs;
 global using dd1 = AOEOBasicDataLibrary.Helpers.BasicGameLocationHelpers;
 global using bb1 = AOEOCivilizationLibrary.Constants.BabylonUnits;
+global using ii1 = AOEOCivilizationLibrary.Constants.IndianUnits;

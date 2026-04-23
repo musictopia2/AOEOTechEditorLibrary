@@ -121,6 +121,17 @@ public static class EffectsServices
         };
         return output;
     }
+
+    public static BasicEffectModel GetBonusDamageAgainstSpecificUnit(string protoUnit, string againstUnit, string value)
+    {
+        BasicEffectModel output = new BonusDamageAgainstUnitModel(againstUnit)
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+        return output;
+    }
+
     public static BasicList<BasicEffectModel> GetBonusDamageAgainstKeyMilitaryUnits(string protoUnit, string value)
     {
         BasicList<BasicEffectModel> output = [];
@@ -221,7 +232,7 @@ public static class EffectsServices
     }
     public static BasicList<BasicEffectModel> GetGatherElephantCarryEffects(string value)
     {
-        return GetUnitCarryEffects(IndianUnits.GathererElephant, value);
+        return GetUnitCarryEffects(ii1.GathererElephant, value);
     }
     private static BasicList<BasicEffectModel> GetUnitCarryEffects(string unit, string value)
     {
@@ -268,13 +279,35 @@ public static class EffectsServices
         }
         return output;
     }
+    public static BasicList<BasicEffectModel> GetYieldEffects(EnumGatherCategory category, string value)
+    {
+        BasicList<BasicEffectModel> output = [];
+        VillagerYieldModel gather = new(category);
+        gather.ProtoUnit = uu1.Villager;
+        gather.Value = value;
+        output.Add(gather);
+        gather = new(category);
+        gather.ProtoUnit = ii1.GathererElephant;
+        gather.Value = value;
+        output.Add(gather);
+        return output;
+    }
+    public static BasicEffectModel GetCaravanTradeWorkRateEffect(string value)
+    {
+        BasicEffectModel output = new CaravanTradeRateModel()
+        {
+            ProtoUnit = uu1.Caravan,
+            Value = value
+        };
+        return output;
+    }
     public static BasicList<BasicEffectModel> GetVillagerYieldEffects(string value)
     {
         return GetUnitYieldEffects(uu1.Villager, value);
     }
     public static BasicList<BasicEffectModel> GetGatherElephantYieldEffects(string value)
     {
-        return GetUnitYieldEffects(IndianUnits.GathererElephant, value);
+        return GetUnitYieldEffects(ii1.GathererElephant, value);
     }
     private static BasicList<BasicEffectModel> GetUnitGatherEffects(string unit, string value)
     {
@@ -305,7 +338,7 @@ public static class EffectsServices
     }
     public static BasicList<BasicEffectModel> GetGatherElephantGatherEffects(string value)
     {
-        return GetUnitGatherEffects(IndianUnits.GathererElephant, value);
+        return GetUnitGatherEffects(ii1.GathererElephant, value);
     }
     public static BasicList<BasicEffectModel> GetShrineExtraGold(string value)
     {
@@ -313,13 +346,13 @@ public static class EffectsServices
         BasicEffectModel effect;
         effect = new AutoGatherModel(EnumResource.Gold)
         {
-            ProtoUnit = IndianUnits.Shrine,
+            ProtoUnit = ii1.Shrine,
             Value = value
         };
         output.Add(effect);
         effect = new ShrineAutoGatherModel(EnumResource.Gold)
         {
-            ProtoUnit = IndianUnits.SacredCow,
+            ProtoUnit = ii1.SacredCow,
             Value = value
         };
         output.Add(effect);
