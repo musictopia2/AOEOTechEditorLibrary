@@ -2,7 +2,7 @@
 
 public class CaravanTradeRateModel : UnitModel
 {
-    protected override string Action => "Tade";
+    protected override string Action => "Trade";
     protected override string SubType => "WorkRate";
     protected override string Resource => "";
     protected override string UnitType => "AbstractTownCenter";
