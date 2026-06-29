@@ -406,6 +406,14 @@ public static class EffectsServices
             Value = value
         };
     }
+    public static BasicEffectModel GetCostAssign(string protoUnit, string value, EnumResource resource)
+    {
+        return new UnitCostModel(resource)
+        {
+            ProtoUnit = protoUnit,
+            Value = value
+        };
+    }
     public static BasicEffectModel GetCustomTactic(string tacticName, string protoUnit)
     {
         return new CustomTacticEffect
