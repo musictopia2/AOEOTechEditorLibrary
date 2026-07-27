@@ -340,6 +340,19 @@ public static class EffectsServices
     {
         return GetUnitGatherEffects(ii1.GathererElephant, value);
     }
+    //the purpose was for a case where a town center would actually gather even more gold.   but i put as assign so i have to specify what the new values would be.
+    //needed for 5 star quests because the gold generated is not enough and since all costs are converted to gold for military units, villagers would not gather food and a person would not caravan either.
+    public static BasicEffectModel GetAutoGatherAssign(EnumResource resource, string assignedValue, string protoUnit)
+    {
+        BasicEffectModel effect;
+        effect = new AutoGatherModel(resource)
+        {
+            ProtoUnit = protoUnit,
+            Value = assignedValue,
+            Relativity = "Assign"
+        };
+        return effect;
+    }
     public static BasicList<BasicEffectModel> GetShrineExtraGold(string value)
     {
         BasicList<BasicEffectModel> output = [];
