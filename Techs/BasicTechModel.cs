@@ -83,16 +83,30 @@ public class BasicTechModel
 
         return model;
     }
+
+    private bool HasOnlyAgePrerequisites()
+    {
+        return Prereqs.Count > 0 &&
+               Prereqs.All(x => x is SpecificAgeModel);
+    }
+
     protected virtual BasicList<string> GetFlags()
     {
         if (ResearchPoints != "0.0000" || Costs.Count > 0)
         {
-            return ["IsAward"]; //has to be isaward  otherwise, ignores cost and research points.
+            return ["IsAward"];
         }
+
+        if (HasOnlyAgePrerequisites())
+        {
+            return ["IsAward"];
+        }
+
         if (Prereqs.Count > 0)
         {
             return ["Volatile"];
         }
+
         return ["IsAward"];
     }
     public BasicList<CostModel> Costs { get; set; } = [];
